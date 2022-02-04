@@ -1,33 +1,36 @@
 <script>
-	import Button from '../components/Button.svelte';
 	import { onMount } from 'svelte';
+	import { Context } from '../functions/Context';
+	import { Flags } from '../functions/Flags';
 	export const id = 0;
 	export const name = "Not Known";
-	export const description  = "Not Known";
 	export const image = "https://via.placeholder.com/150";
-	const gin = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin";
-	const vodka = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Vodka";
+
 	let cocktails = [];
 
 	onMount(async () => {
-		const res = await fetch(gin);
+		const userId = "user" + Math.floor(Math.random() * 9525678);
+		const customer = new Context();
+		const drinks = await Flags.getInstance(customer.known(userId));
+		let fancy = await drinks.treatment("2022.Feb.Tubthumper.TEMP","Vodka");
+		let url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${fancy.value}`;
+		const res = await fetch(url);
 		cocktails = await res.json();
-		console.log(cocktails.drinks)
 		cocktails = cocktails.drinks;
 	});
 
 </script>
 
-<div class="monsters">
+<div class="cocktails">
 	<ul>
-	{#each cocktails as cocktail,i}
-		<li class="card" id={i.toString()}>
-			<div class="name">{cocktail.strDrink}</div>
-			<img src={cocktail.strDrinkThumb == null ? "https://via.placeholder.com/150" : cocktail.strDrinkThumb} alt={cocktail.strDrink}/>
-		</li>
-	{:else}
-	<p>loading...</p>
-	{/each}
+		{#each cocktails as cocktail,i}
+			<li class="card" id={i.toString()}>
+				<div class="name">{cocktail.strDrink}</div>
+				<img src={cocktail.strDrinkThumb == null ? "https://via.placeholder.com/150" : cocktail.strDrinkThumb} alt={cocktail.strDrink}/>
+			</li>
+		{:else}
+			<p>loading...</p>
+		{/each}
 	</ul>
 </div>
 
@@ -56,12 +59,6 @@ li {
 	font-size: 100%;
 	padding: 0.50rem 1rem;
 	margin-bottom: 10%;
-}
-
-.card .desc {
-  padding: 0.5rem 1rem;
-  font-size: 70%;
-  order: 99;
 }
 
 .card img {

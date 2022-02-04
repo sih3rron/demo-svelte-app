@@ -1,9 +1,9 @@
 import * as Client from 'launchdarkly-js-client-sdk';
 
-const Flags = (function(){
+export const Flags = (function(){
 	let theseFlags;
 	const myFlags = {
-		sdkKey: "xyz",
+		sdkKey: "5f7c5a3ac3cd090c293946cd",
 		options: {
 			useReport: true,
 			evaluationReasons: true,
@@ -13,6 +13,7 @@ const Flags = (function(){
 
 	function create(context){
 		const clientFlags = Client.initialize(myFlags.sdkKey, context, myFlags.options);
+		console.log(clientFlags)
 		return {
 			treatment: async (flagname, defaultValue) => {
 				try {
@@ -35,4 +36,4 @@ const Flags = (function(){
 			return theseFlags;
 		}
 	}
-})()
+})();

@@ -8,9 +8,5 @@
 	<title>{title}</title>
 </svelte:head>
 
-
 <Heading title={title} />
-
-<p>Find your poison...</p>
-
 <Card />

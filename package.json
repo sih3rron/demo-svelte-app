@@ -23,6 +23,7 @@
   },
   "type": "module",
   "dependencies": {
+    "dotenv": "^16.0.0",
     "launchdarkly-js-client-sdk": "^2.20.1"
   }
 }
