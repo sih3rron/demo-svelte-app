@@ -1,5 +1,4 @@
 import * as Client from 'launchdarkly-js-client-sdk';
-import type { dataset_dev } from 'svelte/internal';
 
 const Flags = (function(){
 	let theseFlags;
