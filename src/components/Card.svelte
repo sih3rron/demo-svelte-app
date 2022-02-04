@@ -5,22 +5,25 @@
 	export const name = "Not Known";
 	export const description  = "Not Known";
 	export const image = "https://via.placeholder.com/150";
-	let littleMonsters = [];
+	const gin = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin";
+	const vodka = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Vodka";
+	let cocktails = [];
 
 	onMount(async () => {
-		const res = await fetch("https://mhw-db.com/monsters");
-		littleMonsters = await res.json();
+		const res = await fetch(gin);
+		cocktails = await res.json();
+		console.log(cocktails.drinks)
+		cocktails = cocktails.drinks;
 	});
 
 </script>
 
 <div class="monsters">
 	<ul>
-	{#each littleMonsters as monster}
-		<li class="card" id={monster.id.toString()}>
-			<div class="name">{monster.name}</div>
-			<div class="desc">{monster.description}</div>
-			<img src={image} alt={monster.description}/>
+	{#each cocktails as cocktail,i}
+		<li class="card" id={i.toString()}>
+			<div class="name">{cocktail.strDrink}</div>
+			<img src={cocktail.strDrinkThumb == null ? "https://via.placeholder.com/150" : cocktail.strDrinkThumb} alt={cocktail.strDrink}/>
 		</li>
 	{:else}
 	<p>loading...</p>
@@ -50,8 +53,9 @@ li {
 
 .card .name {
 	font-weight: bold;
-	font-size: 200%;
+	font-size: 100%;
 	padding: 0.50rem 1rem;
+	margin-bottom: 10%;
 }
 
 .card .desc {
@@ -62,6 +66,8 @@ li {
 
 .card img {
   margin: 0 auto;
+  background-color: black;
+  width: 250px;
 }
 
 </style>

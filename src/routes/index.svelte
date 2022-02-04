@@ -1,12 +1,16 @@
 <script>
 	import Heading from '../components/Heading.svelte';
 	import Card from '../components/Card.svelte';
+	let title = "Here there be monsters!";
 </script>
 
-<Heading 
-	title={"Here there be monsters!"}
-/>
+<svelte:head>
+	<title>{title}</title>
+</svelte:head>
 
-<p>Find your monster</p>
+
+<Heading title={title} />
+
+<p>Find your poison...</p>
 
 <Card />
