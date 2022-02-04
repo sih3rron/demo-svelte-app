@@ -1,7 +1,7 @@
 <script>
 	//Imports
-	import { onMount, onDestroy } from 'svelte';
-	import { Context } from '../functions/Context';
+	import { onMount } from 'svelte';
+	import { Context, userId } from '../functions/Context';
 	import { Flags } from '../functions/Flags';
 
 	//Props
@@ -13,7 +13,7 @@
 
 	//onMount Data Collection
 	onMount(async () => {
-		const userId = "user" + Math.floor(Math.random() * 9525678);
+		
 		const customer = new Context();
 		const drinks = await Flags.getInstance(customer.known(userId));
 		let fancy = await drinks.treatment("2022.Feb.Tubthumper.TEMP","Vodka");
@@ -21,8 +21,9 @@
 		const res = await fetch(url);
 		cocktails = await res.json();
 		cocktails = cocktails.drinks;
-		
+		//Adding a custom click event
 		document.addEventListener('click', e =>{
+			console.log(e)
 			drinks.metric("Select my Drink");
 		});
 
@@ -44,9 +45,14 @@
 </div>
 
 <style>
+ul {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
 li {
 	display: inline-block;
-	float: left;
 }
 
 .card {
