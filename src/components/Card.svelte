@@ -1,13 +1,17 @@
 <script>
-	import { onMount } from 'svelte';
+	//Imports
+	import { onMount, onDestroy } from 'svelte';
 	import { Context } from '../functions/Context';
 	import { Flags } from '../functions/Flags';
+
+	//Props
 	export const id = 0;
 	export const name = "Not Known";
 	export const image = "https://via.placeholder.com/150";
 
 	let cocktails = [];
 
+	//onMount Data Collection
 	onMount(async () => {
 		const userId = "user" + Math.floor(Math.random() * 9525678);
 		const customer = new Context();
@@ -17,6 +21,11 @@
 		const res = await fetch(url);
 		cocktails = await res.json();
 		cocktails = cocktails.drinks;
+		
+		document.addEventListener('click', e =>{
+			drinks.metric("Select my Drink");
+		});
+
 	});
 
 </script>

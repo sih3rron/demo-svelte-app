@@ -13,7 +13,6 @@ export const Flags = (function(){
 
 	function create(context){
 		const clientFlags = Client.initialize(myFlags.sdkKey, context, myFlags.options);
-		console.log(clientFlags)
 		return {
 			treatment: async (flagname, defaultValue) => {
 				try {
