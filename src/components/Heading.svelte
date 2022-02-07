@@ -17,7 +17,7 @@
 
 h1 {
   font-family: 'Berkshire Swash', cursive;
-  font-size: 5.5em;
+  font-size: 500%;
   text-align: center;
   padding: .45em;
 }

@@ -1,4 +1,5 @@
 import * as Client from 'launchdarkly-js-client-sdk';
+import { analyticsTemplate } from './Analytics';
 
 export const Flags = (function(){
 	let theseFlags;
@@ -18,6 +19,8 @@ export const Flags = (function(){
 				try {
 					await clientFlags.waitForInitialization();
 					let details = clientFlags.variationDetail(flagname, defaultValue);
+					analyticsTemplate(gtag, details, flagname);
+					console.log(flagname)
 					return details;
 				} catch (error) {
 					console.log(error);

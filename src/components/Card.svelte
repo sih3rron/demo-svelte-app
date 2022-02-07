@@ -10,32 +10,31 @@
 	export const image = "https://via.placeholder.com/150";
 
 	let cocktails = [];
+	let drinks;
 
 	//onMount Data Collection
 	onMount(async () => {
-		
 		const customer = new Context();
-		const drinks = await Flags.getInstance(customer.known(userId));
+		drinks = await Flags.getInstance(customer.known(userId));
 		let fancy = await drinks.treatment("2022.Feb.Tubthumper.TEMP","Vodka");
 		let url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${fancy.value}`;
 		const res = await fetch(url);
 		cocktails = await res.json();
 		cocktails = cocktails.drinks;
-		//Adding a custom click event
-		document.addEventListener('click', e =>{
-			console.log(e)
-			drinks.metric("Select my Drink");
-		});
-
 	});
 
+	const handleClick = function(choice){
+		drinks.metric("Select my Drink", {"Drink_Choice": choice});
+		console.log(choice);
+	}
+	
 </script>
 
 <div class="cocktails">
 	<ul>
 		{#each cocktails as cocktail,i}
-			<li class="card" id={i.toString()}>
-				<div class="name">{cocktail.strDrink}</div>
+			<li class="card" id={i.toString()} on:click={handleClick(cocktail.strDrink)}>
+				<div class="name" id={cocktail.idDrink}>{cocktail.strDrink}</div>
 				<img src={cocktail.strDrinkThumb == null ? "https://via.placeholder.com/150" : cocktail.strDrinkThumb} alt={cocktail.strDrink}/>
 			</li>
 		{:else}

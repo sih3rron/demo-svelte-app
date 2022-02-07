@@ -1,6 +1,6 @@
 <script>
 	export let buttonClass = "primary";
-	export let buttonText = "This is a primary button"
+	export let buttonText = "This is a primary button";
 </script>
 
 <button class={buttonClass}>

@@ -6,6 +6,13 @@
 
 <svelte:head>
 	<title>{title}</title>
+	<script src="https://www.googletagmanager.com/gtag/js?id=G-EBX5SBQDCQ"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EBX5SBQDCQ');
+	</script>
 </svelte:head>
 
 <Heading title={title} />
