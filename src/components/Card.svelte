@@ -15,7 +15,8 @@
 	//onMount Data Collection
 	onMount(async () => {
 		const customer = new Context();
-		drinks = await Flags.getInstance(customer.known(userId));
+		drinks = await Flags.getInstance(customer.known("user1418233"));
+		//console.log(userId);
 		let fancy = await drinks.treatment("2022.Feb.Tubthumper.TEMP","Vodka");
 		let url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${fancy.value}`;
 		const res = await fetch(url);

@@ -3,7 +3,7 @@ import { analyticsTemplate } from './Analytics';
 
 export const Flags = (function(){
 	let theseFlags;
-	const myFlags = {
+	const myFlagsConfig = {
 		sdkKey: "5f7c5a3ac3cd090c293946cd",
 		options: {
 			useReport: true,
@@ -13,7 +13,7 @@ export const Flags = (function(){
 	}
 
 	function create(context){
-		const clientFlags = Client.initialize(myFlags.sdkKey, context, myFlags.options);
+		const clientFlags = Client.initialize(myFlagsConfig.sdkKey, context, myFlagsConfig.options);
 		return {
 			treatment: async (flagname, defaultValue) => {
 				try {
