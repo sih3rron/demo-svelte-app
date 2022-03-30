@@ -13,6 +13,8 @@
       gtag('js', new Date());
       gtag('config', 'G-EBX5SBQDCQ');
 	</script>
+	<!-- Hotjar Tracking Code for https://www.siherron.co.uk -->
+	<script src="../functions/hotjar.js"></script>
 </svelte:head>
 
 <Heading title={title} />

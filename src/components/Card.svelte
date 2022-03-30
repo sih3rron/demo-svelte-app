@@ -15,10 +15,11 @@
 	//onMount Data Collection
 	onMount(async () => {
 		const customer = new Context();
-		drinks = await Flags.getInstance(customer.known("user1418233"));
+		drinks = await Flags.getInstance(customer.known(userId));
 		//console.log(userId);
 		let fancy = await drinks.treatment("2022.Feb.Tubthumper.TEMP","Vodka");
 		let url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${fancy.value}`;
+		//let url = `https://play.nintendo.com/api/v1/content/?contenttype=Theme.Character&format=json&sort=uniqueorder`;
 		const res = await fetch(url);
 		cocktails = await res.json();
 		cocktails = cocktails.drinks;
