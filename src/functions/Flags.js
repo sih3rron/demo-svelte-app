@@ -20,7 +20,6 @@ export const Flags = (function(){
 					await clientFlags.waitForInitialization();
 					let details = clientFlags.variationDetail(flagname, defaultValue);
 					analyticsTemplate(gtag, details, flagname);
-					console.log(flagname)
 					return details;
 				} catch (error) {
 					console.log(error);

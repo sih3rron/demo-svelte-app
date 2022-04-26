@@ -8,8 +8,14 @@ export const analyticsTemplate = async (gtag, details, flagname) => {
 		eventCreated: new Date(),
 	};
 
-	console.log(details);
-	console.log(assignment);
+	console.group(`[MOCK]: Data Warehouse for ${assignment.flagname}.`)
+		console.log(`Flag name: ${assignment.flagname}`)
+		console.log(`Treatment: ${assignment.treatment}`)
+		console.log(`Part of an Experiment: ${assignment.isExperiment}`)
+		console.log(`Which Rule: ${assignment.audience}`)
+		console.log(`The Rules Index: ${assignment.audienceIndex}`)
+		console.log(`Event Created: ${assignment.eventCreated}`)
+	console.groupEnd()
 
 	if (!!window.gtag)
 		gtag("event", "feature_treatment", assignment);
