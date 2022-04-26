@@ -1,5 +1,20 @@
 <script>
   export let title;
+
+	//Imports
+	import { onMount } from 'svelte';
+	import { Context, userId } from '../functions/Context';
+	import { Flags } from '../functions/Flags';
+  let heading;
+
+  onMount(async () => {
+		const customer = new Context();
+		heading = await Flags.getInstance(customer.known(userId));
+		let newTitle = await heading.treatment("2022.April.Heading.TEMP","Here there be Cocktails!");
+    title = newTitle.value;
+	});
+
+
 </script>
 
 <div class="heading">

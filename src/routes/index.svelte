@@ -1,7 +1,7 @@
 <script>
 	import Heading from '../components/Heading.svelte';
 	import Card from '../components/Card.svelte';
-	let title = "Here there be cocktails!";
+	let title = "";
 </script>
 
 <svelte:head>

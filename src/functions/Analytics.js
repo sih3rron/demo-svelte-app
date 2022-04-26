@@ -3,8 +3,8 @@ export const analyticsTemplate = async (gtag, details, flagname) => {
 		flagname: flagname,
 		treatment: details.variationIndex,
 		isExperiment: details.reason.inExperiment == null || details.reason.inExperiment == undefined ?  false : details.reason.inExperiment,
-		audience: details.reason.ruleId !== null || details.reason.ruleId !== undefined ? details.reason.ruleId: details.reason.kind,
-		audienceIndex: details.reason.ruleIndex !== null || details.reason.ruleId !== undefined ? details.reason.ruleIndex: details.reason.kind,
+		audience: details.reason.ruleId == undefined ?  details.reason.kind : details.reason.ruleId,
+		audienceIndex: details.reason.ruleIndex == undefined ?  details.reason.kind : details.reason.ruleIndex,
 		eventCreated: new Date(),
 	};
 
